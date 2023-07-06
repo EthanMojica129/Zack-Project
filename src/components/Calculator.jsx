@@ -1,6 +1,5 @@
 import './Calculator.css'
 
-import Select from 'react-select'
 import { CountyData, BedroomData, quaters} from '../assets/CData'
 import { useState, useEffect } from 'react'
 import {calculus} from '../helpers/actualCalc'
@@ -27,7 +26,11 @@ export const Calculator = () => {
       AMI.innerText=`$ ${result[1]}`
       if(window.innerWidth <481){
         top.height= '30vh';
-      } else{
+      } else if(window.innerWidth < 1025) {
+        top.height='25vh';
+        bottom.height='20vh'
+      }
+      else{
         top.height='20vh';
         bottom.height= '10vh';
       }
@@ -39,7 +42,10 @@ export const Calculator = () => {
         bottom.width = '100%'
         top.height = '40vh'
         bottom.height = '100%'
-      }else{
+      }else if(window.innerWidth < 1025){
+        top.height = '45vh'
+        bottom.height = '40vh'
+      } else{
         top.height='30vh';
         bottom.height= '20vh';
         top.width ='19vw';
@@ -51,79 +57,48 @@ export const Calculator = () => {
   }, [county, bedroom])
 
 
-  const handleChange = (e) =>{
-    if(typeof e.value === 'string'){
-      setCounty(e.value)
-    } else {
-      switch(e.value){
-      case 1: setBedroom('OBedroom')
+  const handleChange = (e) =>{    
+    console.log(typeof e.target.value)
+      switch(e.target.value){
+      case '1': setBedroom('OBedroom')
               break;
-      case 2: setBedroom('TBedrooms')
+      case '2': setBedroom('TBedrooms')
               break;
-      case 3: setBedroom('THBedrooms')
+      case '3': setBedroom('THBedrooms')
               break;
-      case 4: setBedroom('FBedrooms')
+      case '4': setBedroom('FBedrooms')
               break;
-      case 5: setBedroom('FVBedrooms')
+      case '5': setBedroom('FVBedrooms')
+              break;
+      case 'Barrie': 
+      case 'OroMedonte':
+      case 'Innisfil':
+      case 'Ramara':
+      case 'Georgina': 
+      case 'Brock': 
+      case 'Orillia':
+        setCounty(e.target.value)
               break;
       default: console.log('hi')
               break;
       }
-    }
+  
+   console.log(county, bedroom)
   }
   return (
     <>
-    <div className='selects'>
-      <Select 
-      defaultValue={ {label: 'Your Location +', value: 'XXXX'}}
-      options={CountyData}
-      onChange ={(e)=>{handleChange(e)}}
-      classNamePrefix ='selection'
-      styles={{
-        control: (baseStyles) => ({
-          ...baseStyles,
-          borderColor: "#01b4d2",
-          borderRadius: '50px',
-          background: '#01b4d2',
-          fontWeight: 500,
-          fontSize: "2rem",
-          color:"#0A0045",
-          "@media only screen and (max-width: 320px)":{
-            ...baseStyles["@media only screen and (max-width: 320px)"],
-            fontSize: "20px"
-          }
-        }),
-        input: (baseStyles) => ({
-          ...baseStyles,
-          color: "#0A0045",
-          
-        })
-      }}
-      />
-
-      <Select 
-      defaultValue={ {label: 'Number Of Bedrooms', value: 'XXXX'}}
-      options={BedroomData}
-      onChange ={(e)=>{handleChange(e)}}
-      classNamePrefix='Selection'
-      styles={{
-        control: (baseStyles) => ({
-          ...baseStyles,
-          borderColor: "#01b4d2",
-          borderRadius: '50px',
-          background: '#01b4d2',
-          fontWeight: 500,
-          fontSize: "2rem",
-          color:"#0A0045"
-        }),
-        input: (baseStyles) => ({
-          ...baseStyles,
-          color: "#0A0045",
-          
-        })
-      }}
-      />
-    </div>
+      <div className='selects'>
+      <select onChange={handleChange} defaultValue= {'placeholder'}>
+      {CountyData.map((counties, i)=>(
+        <option key={i} value={counties.value} id={`select${i}`}>{counties.label} </option>
+      ))}
+     </select>
+     <select onChange={handleChange} defaultValue={'placeholder'}>
+     {BedroomData.map((Bedroom, i)=>(
+        <option key={i} value={Bedroom.value} id={`select${i+2}`}>{Bedroom.label} </option>
+      ))}
+     </select>
+     </div>
     <div className = 'calculator'>
       {
         quaters.map((quaters)=>(

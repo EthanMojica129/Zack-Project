@@ -52,7 +52,7 @@ function App() {
           {countyListPart1.map((county)=>(
             <div key={county.num} className='countyDiv' id={county.id} >
               <img src ={county.src} alt={county.Alt} id={county.id} className={county.className} />
-              <h2>{county.id !== 'OroMedonte'? county.id: 'Oro-Medonte'}</h2>
+              <h2>{county.id !== 'OroMedonte'? county.id: 'Oro Medonte'}</h2>
             </div>
           ))
           }
@@ -78,7 +78,7 @@ function App() {
       <article id='thirdSection'>
         <h2>How do You Compare?</h2>
         <h3 className= 'fooH3'>{"Don't "}Shoot The Messenger, But If {"You're "}Making Less Than These Numbers, {"You're "} Losing, Badly</h3>
-        <h3 className= 'fooH3'>If {"You're "} Making More Than These Numbers, Good. As A Water Front Rental, You Should Be. The Reality Is, You Should Be Far Above These Numbers.</h3>
+        <h3 className= 'fooH3' id='oH3'>If {"You're "} Making More Than These Numbers, Good. As A Water Front Rental, You Should Be. The Reality Is, You Should Be Far Above These Numbers.</h3>
         <p>Not Happy With How You Stack Up?</p>
         <p>{"Let's "} Make A Gameplan To Get You To The Top.</p>
         <PButton className='link' content='SPEAK WITH ME' id='third'/>
@@ -94,7 +94,7 @@ function App() {
               <div className='speech bottom'>
                 <h2>Does This Sound Familiar?</h2>
               </div>
-                <ul>
+                <ul className='list'>
                 {familiar.map((familiar, index)=>(
                   <li key={index} className='familiarity' >
                     {familiar}
@@ -102,10 +102,10 @@ function App() {
                     ))}
                 </ul>
                 <div>              
-                  <img src='/images/Little Thing.png' aria-hidden= 'true' />
-                <h2>{"Let's "} Get Here...</h2>
+                  <img src='/images/Little Thing.png' aria-hidden= 'true'  className='LT'/>
+                <h2 id='fooH2'>{"Let's "} Get Here...</h2>
             </div>
-              <ul>
+              <ul className='list'>
                 {objective.map((objective, index)=>(
                   <li key = {index} className ='objective' >
                     {objective}

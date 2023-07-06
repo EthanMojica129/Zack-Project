@@ -5,7 +5,8 @@ export let CountyData = [
     {label: 'Ramara', value: 'Ramara'},
     {label: 'Georgina', value: 'Georgina'},
     {label: 'Brock', value: 'Brock'},
-    {label: 'Orillia', value: 'Orillia'}
+    {label: 'Orillia', value: 'Orillia'},
+    {label: 'Select County', value: 'placeholder'}
 ]
 
 export let BedroomData = [
@@ -14,6 +15,7 @@ export let BedroomData = [
     {label: '3 Bedrooms', value: 3},
     {label: '4 Bedrooms', value: 4},
     {label: '5 Bedrooms or more', value: 5},
+    {label: 'Number Of Bedroom', value: 'placeholder'}
 ]
 
 export let quaters = [
